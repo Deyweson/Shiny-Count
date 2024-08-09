@@ -6,8 +6,12 @@ interface pokemon {
   ID: string
   NAME: string
 }
+interface Props {
+  search: string
+}
 
-export function AddPokemonCard(): JSX.Element {
+export function AddPokemonCard({ search }: Props): JSX.Element {
+  const [pokemonBase, setPokemonBase] = useState<pokemon[]>()
   const [pokemon, setPokemon] = useState<pokemon[]>()
 
   useEffect(() => {
@@ -18,20 +22,31 @@ export function AddPokemonCard(): JSX.Element {
         console.error('Error received from main process:', response.error)
       } else {
         console.log('Data received from main process:', response.data)
-        setPokemon(response.data)
-        console.log(pokemon, event)
+        setPokemonBase(response.data)
+        console.log(pokemonBase, event)
       }
       console.log('terminou')
     })
     ipcRenderer.removeListener('teste', () => {})
   }, [])
 
+  useEffect(() => {
+    if (search.trim() !== '') {
+      const poke = pokemonBase?.filter((poke) =>
+        poke.NAME.toLowerCase().includes(search.trim().toLowerCase())
+      )
+      setPokemon(poke)
+    } else {
+      setPokemon(pokemonBase)
+    }
+  }, [search])
+
   return (
     <div className="poke-card-container">
       {pokemon && pokemon.length > 0 ? (
         pokemon.map((poke) => (
           <div className="new-count-poke-card" key={poke.ID}>
-            <img src="/src/pages/assets/image.png" alt={poke.NAME} />
+            <img src={`/src/pages/assets/gen1/${poke.ID}.png`} alt={poke.NAME} />
             <p>{poke.NAME}</p>
             <button>+</button>
           </div>
