@@ -2,7 +2,8 @@ const { ipcRenderer } = require('electron')
 
 export const Database = {
   teste: (): void => {
-    ipcRenderer.send('teste')
+    const teste = ipcRenderer.send('teste')
+    console.log(teste)
   }
 }
 
