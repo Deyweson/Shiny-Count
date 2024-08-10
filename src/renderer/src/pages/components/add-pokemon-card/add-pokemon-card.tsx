@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import './add-pokemon-card.css'
+import pokemonImages from '@renderer/pages/assets/gen1/gen1'
 const { ipcRenderer } = require('electron')
 
 interface pokemon {
@@ -23,6 +24,7 @@ export function AddPokemonCard({ search }: Props): JSX.Element {
       } else {
         console.log('Data received from main process:', response.data)
         setPokemonBase(response.data)
+        setPokemon(response.data)
         console.log(pokemonBase, event)
       }
       console.log('terminou')
@@ -46,7 +48,7 @@ export function AddPokemonCard({ search }: Props): JSX.Element {
       {pokemon && pokemon.length > 0 ? (
         pokemon.map((poke) => (
           <div className="new-count-poke-card" key={poke.ID}>
-            <img src={`/src/pages/assets/gen1/${poke.ID}.png`} alt={poke.NAME} />
+            <img src={`${pokemonImages[Number(poke.ID) - 1]}`} alt={poke.NAME} />
             <p>{poke.NAME}</p>
             <button>+</button>
           </div>

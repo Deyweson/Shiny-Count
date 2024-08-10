@@ -9,6 +9,7 @@ export function AddPokemonPage(): JSX.Element {
   function nav(): void {
     navigate('/')
   }
+  console.log(backArrow)
 
   const [search, setSearch] = useState('')
   function handleChange(e): void {

@@ -11,7 +11,7 @@ export const InsertPokemon = (db: sqlite.Database): void => {
       if (err) {
         console.error(err.message)
       }
-      console.log('Inserted a row into Pokémon.')
+      // console.log('Inserted a row into Pokémon.')
     })
   }
 }
