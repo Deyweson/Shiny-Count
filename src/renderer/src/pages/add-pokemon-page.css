@@ -1,4 +1,4 @@
-.pokemon-page-header{
+.pokemon-page-header {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,5 +23,5 @@
   height: 20px;
   border-radius: 10px;
   text-align: center;
-  font-family: "Rubik", sans-serif;
+  font-family: 'Rubik', sans-serif;
 }

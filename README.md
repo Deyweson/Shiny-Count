@@ -19,13 +19,20 @@
 - **SQLite3:** Para gerenciamento e armazenamento dos dados.
 
 ## TODO
+
 ---
+
 ### Configurar Projeto
+
 - [x] Configurar Electron com React e TypeScript.
+
 ### Configurar Banco de Dados
+
 - [x] Escolher um sistema de banco de dados (por exemplo, SQLite, PostgreSQL).
 - [ ] Projetar o esquema do banco de dados.
+
 ### Criar Banco de Dados
+
 - [ ] Criar a tabela `gen1`.
 - [ ] Inserir 151 Pokémon na tabela `gen1`.
 - [ ] Criar a tabela `CountActive`.

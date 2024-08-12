@@ -29,7 +29,7 @@ export function AddPokemonCard({ search }: Props): JSX.Element {
       }
       console.log('terminou')
     })
-    ipcRenderer.removeListener('teste', () => {})
+    ipcRenderer.removeListener('pokemon-response', () => {})
   }, [])
 
   useEffect(() => {
