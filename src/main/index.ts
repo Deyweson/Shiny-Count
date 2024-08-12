@@ -4,8 +4,6 @@ import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
 import { setupDatabase } from './database/setup-database'
 
-setupDatabase()
-
 function createWindow(): void {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
@@ -25,6 +23,7 @@ function createWindow(): void {
   })
 
   mainWindow.on('ready-to-show', () => {
+    setupDatabase()
     mainWindow.show()
   })
 

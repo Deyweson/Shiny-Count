@@ -1,11 +1,12 @@
 import { app, ipcMain } from 'electron'
 import sqlite from 'sqlite3'
+
 import path from 'node:path'
-import fs from 'fs'
+import { CreateCounterTable } from './create-counter-table'
+import { insertCounter } from './insert-counter'
 
 const dbPath = path.join(app.getPath('userData'), 'database.db')
 console.log(dbPath)
-console.log(fs.existsSync(dbPath))
 
 export const setup = {
   openConnect: (): sqlite.Database => {
@@ -26,12 +27,20 @@ export const setup = {
     })
   }
 }
+interface AddCounterData {
+  id_poke: number
+  time: number
+  attempts: number
+  is_complete: boolean
+}
 
 export const setupDatabase = (): void => {
   const db = setup.openConnect()
-  db.serialize(() => {})
-
-  ipcMain.on('pokemon', () => {
-    console.log('clicou')
+  db.serialize(() => {
+    CreateCounterTable(db)
+  })
+  ipcMain.handle('add-counter', async (_event, data: AddCounterData) => {
+    insertCounter(db, data)
+    return { data: 'add' }
   })
 }

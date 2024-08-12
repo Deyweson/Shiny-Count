@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import './add-pokemon-card.css'
 import { pokemonData } from '@renderer/pages/assets/gen1/gen1'
+import { useNavigate } from 'react-router-dom'
 
 interface IPokemon {
   id: string
@@ -25,6 +26,33 @@ export function AddPokemonCard({ search }: Props): JSX.Element {
     }
   }, [search])
 
+  interface AddCounterResponse {
+    data: string
+  }
+
+  async function sendAddCounter(poke): Promise<void> {
+    try {
+      const response: AddCounterResponse = await window.api.addCounter(poke)
+      console.log('Received response:', response)
+    } catch (error) {
+      console.error('Failed to get response:', error)
+    }
+  }
+  interface AddCounterData {
+    id_poke: number
+    time: number
+    attempts: number
+    is_complete: boolean
+  }
+
+  function handleAddCounter(poke: AddCounterData): void {
+    console.log(poke)
+    sendAddCounter(poke)
+    nav('/')
+  }
+
+  const nav = useNavigate()
+
   return (
     <div className="poke-card-container">
       {pokemon && pokemon.length > 0 ? (
@@ -32,7 +60,18 @@ export function AddPokemonCard({ search }: Props): JSX.Element {
           <div className="new-count-poke-card" key={poke.id}>
             <img src={poke.image} alt={poke.name} />
             <p>{poke.name}</p>
-            <button>+</button>
+            <button
+              onClick={() =>
+                handleAddCounter({
+                  attempts: 0,
+                  id_poke: Number(poke.id),
+                  is_complete: false,
+                  time: 0
+                })
+              }
+            >
+              +
+            </button>
           </div>
         ))
       ) : (
