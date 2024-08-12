@@ -6,6 +6,7 @@ interface Api {
     attempts: number
     is_complete: boolean
   }) => Promise<{ data: string }>
+  getCounters: () => Promise<Counter[]>
 }
 
 interface Window {

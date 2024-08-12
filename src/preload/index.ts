@@ -1,7 +1,14 @@
 import { contextBridge, ipcRenderer } from 'electron'
 import { electronAPI } from '@electron-toolkit/preload'
 
-// Custom APIs for renderer
+// Define a interface para os dados que você espera receber e enviar
+interface Counter {
+  id: string
+  id_poke: number
+  time: number
+  attempts: number
+  is_complete: boolean
+}
 
 interface IApi {
   addCounter: (data: {
@@ -10,10 +17,14 @@ interface IApi {
     attempts: number
     is_complete: boolean
   }) => Promise<void>
+  getCounters: () => Promise<Counter[]>
 }
+
+// Implementação das funções expostas
 const api: IApi = {
   addCounter: (data: { id_poke: number; time: number; attempts: number; is_complete: boolean }) =>
-    ipcRenderer.invoke('add-counter', data)
+    ipcRenderer.invoke('add-counter', data),
+  getCounters: () => ipcRenderer.invoke('get-counters')
 }
 
 // Use `contextBridge` APIs to expose Electron APIs to

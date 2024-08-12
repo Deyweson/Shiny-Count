@@ -43,4 +43,15 @@ export const setupDatabase = (): void => {
     insertCounter(db, data)
     return { data: 'add' }
   })
+  ipcMain.handle('get-counters', async () => {
+    return new Promise((resolve, reject) => {
+      db.all('SELECT * FROM counters', [], (err, rows) => {
+        if (err) {
+          reject(err)
+        } else {
+          resolve(rows)
+        }
+      })
+    })
+  })
 }
