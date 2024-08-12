@@ -9,10 +9,9 @@ export function AddPokemonPage(): JSX.Element {
   function nav(): void {
     navigate('/')
   }
-  console.log(backArrow)
 
   const [search, setSearch] = useState('')
-  function handleChange(e): void {
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>): void {
     setSearch(e.target.value)
     console.log(search)
   }
@@ -23,7 +22,9 @@ export function AddPokemonPage(): JSX.Element {
         <img src={backArrow} onClick={() => nav()} />
         <h1>Pokémon</h1>
       </header>
-      <input type="text" className="pokemon-page-search" onChange={handleChange} />
+
+      <input type="text" className="pokemon-page-search" value={search} onChange={handleChange} />
+
       <AddPokemonCard search={search} />
     </div>
   )
