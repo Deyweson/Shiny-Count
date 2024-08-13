@@ -7,10 +7,10 @@ import { setupDatabase } from './database/setup-database'
 function createWindow(): void {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    minWidth: 450,
-    minHeight: 450,
-    width: 450,
-    height: 450,
+    minWidth: 350,
+    minHeight: 350,
+    width: 350,
+    height: 350,
     show: false,
     autoHideMenuBar: true,
     ...(process.platform === 'linux' ? { icon } : {}),

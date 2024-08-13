@@ -32,6 +32,17 @@ export function Counter({ id }: Props): JSX.Element {
     }
   }
 
+  async function downCounter(count: number, id: string): Promise<void> {
+    try {
+      if (pokemon !== undefined && pokemon?.attempts > 0) {
+        await window.api.downCounter(count, id)
+        setRefresh(refresh + 1)
+      }
+    } catch (error) {
+      console.error('Failed to up counter:', error)
+    }
+  }
+
   async function getPokemonCounter(id: string): Promise<pokemonCounter | void> {
     try {
       const response = await window.api.getPokemonCounter(id)
@@ -67,7 +78,9 @@ export function Counter({ id }: Props): JSX.Element {
           <p>{pokemon?.attempts}</p>
 
           <div className="buttons">
-            <button id="button-red">-</button>
+            <button id="button-red" onClick={() => downCounter(pokemon.attempts - 1, pokemon.id)}>
+              -
+            </button>
             <button onClick={() => upCounter(pokemon.attempts + 1, pokemon.id)}>+</button>
           </div>
         </div>
