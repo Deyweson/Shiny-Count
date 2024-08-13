@@ -1,0 +1,50 @@
+.counter-page-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+
+.counter-page{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  text-transform: capitalize;
+}
+
+
+.counter-page img {
+  width: 300px;
+  height: 10em;
+  width: 10em;
+}
+
+.counter-page p {
+  margin: 5px;
+}
+
+
+.buttons button {
+  all: unset;
+  background-color: rgba(0, 255, 0, 0.479);
+  border-radius: 5px;
+  text-align: center;
+  width: 50px;
+  margin: 10px;
+  cursor: pointer;
+  transition-duration: 0.3s;
+}
+
+.buttons button:hover{
+  transition-duration: 0.3s;
+  scale: 1.2;
+}
+
+#button-red {
+  background-color: rgba(255, 0, 0, 0.479);
+}

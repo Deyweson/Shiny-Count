@@ -30,17 +30,17 @@ export function Home(): JSX.Element {
 
   const navigate = useNavigate()
 
-  function nav(): void {
-    navigate('/pokemon')
+  function nav(path: string): void {
+    navigate(path)
   }
 
   return (
     <div>
       <h1>Shiny Count</h1>
-      <button onClick={() => nav()}>New Counter</button>
+      <button onClick={() => nav('/pokemon')}>New Counter</button>
       <div className="counter-container">
         {counters.map((count) => (
-          <div className="counter" key={count.id}>
+          <div className="counter" key={count.id} onClick={() => nav('/counter')}>
             <img src={pokemonData[count.id_poke - 1].image} alt="" />
             <p>{pokemonData[count.id_poke - 1].name}</p>
             <p>attemps: {count.attempts}</p>
