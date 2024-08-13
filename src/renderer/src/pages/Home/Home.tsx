@@ -40,7 +40,7 @@ export function Home({ setId }: Props): JSX.Element {
   }
 
   return (
-    <div>
+    <div className="home-page">
       <h1>Shiny Count</h1>
       <button onClick={() => nav('/pokemon', '123')}>New Counter</button>
       <div className="counter-container">
