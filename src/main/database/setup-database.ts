@@ -1,11 +1,12 @@
 import { app, ipcMain } from 'electron'
 import sqlite from 'sqlite3'
 
-import path from 'node:path'
 import { CreateCounterTable } from './create-counter-table'
 import { insertCounter } from './insert-counter'
+import path from 'path'
 
-const dbPath = path.join(app.getPath('userData'), 'database.db')
+const dbPath = path.join(app.getPath('userData'), 'database.db') // path to dev
+// const dbPath = path.join(__dirname, '..', '..', '..', '..', 'database.db') Path to prod
 console.log(dbPath)
 
 export const setup = {
