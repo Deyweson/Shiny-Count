@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { pokemonData } from '../assets/gen1/gen1'
+import backArrow from '../assets/back-arrow.png'
 import './Counter.css'
 import { useNavigate } from 'react-router-dom'
 
@@ -9,6 +10,9 @@ interface Props {
 
 export function Counter({ id }: Props): JSX.Element {
   const [pokemon, setPokemon] = useState<pokemonCounter>()
+
+  const navigate = useNavigate()
+
   interface pokemonCounter {
     id: string
     id_poke: number
@@ -26,7 +30,6 @@ export function Counter({ id }: Props): JSX.Element {
       console.error('Failed to fetch counters:', error)
     }
   }
-  const navigate = useNavigate()
 
   useEffect(() => {
     if (id === undefined) {
@@ -38,6 +41,12 @@ export function Counter({ id }: Props): JSX.Element {
 
   return (
     <div className="counter-page-container">
+      <img
+        className="counter-page-backarrow"
+        src={backArrow}
+        alt="left arrow"
+        onClick={() => navigate('/')}
+      />
       {pokemon ? (
         <div className="counter-page">
           <img

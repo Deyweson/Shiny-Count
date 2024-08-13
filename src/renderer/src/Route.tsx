@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom'
-import { Home } from './pages/Home'
+import { Home } from './pages/Home/Home'
 import { AddPokemonPage } from './pages/Add-Pokemon-Page'
 import { Counter } from './pages/Counter/Counter'
 import { useState } from 'react'

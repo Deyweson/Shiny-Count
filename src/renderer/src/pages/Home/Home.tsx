@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { pokemonData } from './assets/gen1/gen1'
+import { pokemonData } from '../assets/gen1/gen1'
 import './home.css'
 
 interface Props {
@@ -49,7 +49,6 @@ export function Home({ setId }: Props): JSX.Element {
             <img src={pokemonData[count.id_poke - 1].image} alt="" />
             <p>{pokemonData[count.id_poke - 1].name}</p>
             <p>attemps: {count.attempts}</p>
-            <p>time: 10m 10s</p>
           </div>
         ))}
       </div>
