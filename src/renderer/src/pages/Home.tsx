@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { pokemonData } from './assets/gen1/gen1'
+import './home.css'
 
 export function Home(): JSX.Element {
   interface Counter {
@@ -15,6 +17,7 @@ export function Home(): JSX.Element {
     try {
       const response = await window.api.getCounters()
       setCounters(response)
+      console.log(counters)
     } catch (error) {
       console.error('Failed to fetch counters:', error)
     }
@@ -35,6 +38,16 @@ export function Home(): JSX.Element {
     <div>
       <h1>Shiny Count</h1>
       <button onClick={() => nav()}>New Counter</button>
+      <div className="counter-container">
+        {counters.map((count) => (
+          <div className="counter" key={count.id}>
+            <img src={pokemonData[count.id_poke - 1].image} alt="" />
+            <p>{pokemonData[count.id_poke - 1].name}</p>
+            <p>attemps: {count.attempts}</p>
+            <p>time: 10m 10s</p>
+          </div>
+        ))}
+      </div>
     </div>
   )
 }
