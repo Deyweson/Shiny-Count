@@ -7,6 +7,7 @@ interface Api {
     is_complete: boolean
   }) => Promise<{ data: string }>
   getCounters: () => Promise<Counter[]>
+  getPokemonCounter: (id: string) => Promise<pokemonCounter>
 }
 
 interface Window {

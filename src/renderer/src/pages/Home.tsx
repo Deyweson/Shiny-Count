@@ -3,7 +3,11 @@ import { useNavigate } from 'react-router-dom'
 import { pokemonData } from './assets/gen1/gen1'
 import './home.css'
 
-export function Home(): JSX.Element {
+interface Props {
+  setId: React.Dispatch<React.SetStateAction<string | undefined>>
+}
+
+export function Home({ setId }: Props): JSX.Element {
   interface Counter {
     id: string
     id_poke: number
@@ -30,17 +34,18 @@ export function Home(): JSX.Element {
 
   const navigate = useNavigate()
 
-  function nav(path: string): void {
+  function nav(path: string, id: string): void {
+    setId(id)
     navigate(path)
   }
 
   return (
     <div>
       <h1>Shiny Count</h1>
-      <button onClick={() => nav('/pokemon')}>New Counter</button>
+      <button onClick={() => nav('/pokemon', '123')}>New Counter</button>
       <div className="counter-container">
         {counters.map((count) => (
-          <div className="counter" key={count.id} onClick={() => nav('/counter')}>
+          <div className="counter" key={count.id} onClick={() => nav('/counter', count.id)}>
             <img src={pokemonData[count.id_poke - 1].image} alt="" />
             <p>{pokemonData[count.id_poke - 1].name}</p>
             <p>attemps: {count.attempts}</p>

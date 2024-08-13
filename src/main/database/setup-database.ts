@@ -4,7 +4,6 @@ import sqlite from 'sqlite3'
 import { CreateCounterTable } from './create-counter-table'
 import { insertCounter } from './insert-counter'
 import path from 'path'
-
 const dbPath = path.join(app.getPath('userData'), 'database.db') // path to dev
 // const dbPath = path.join(__dirname, '..', '..', '..', '..', 'database.db') Path to prod
 console.log(dbPath)
@@ -57,6 +56,17 @@ export const setupDatabase = (): void => {
           }
         }
       )
+    })
+  })
+  ipcMain.handle('get-pokemon-counter', async (__event, id: string) => {
+    return new Promise((resolve, reject) => {
+      db.all('select * from counters where id = ?', [id], (err, rows) => {
+        if (err) {
+          reject(err)
+        } else {
+          resolve(rows)
+        }
+      })
     })
   })
 }
