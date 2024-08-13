@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react'
 import './add-pokemon-card.css'
-import { pokemonData } from '@renderer/pages/assets/gen1/gen1'
 import { useNavigate } from 'react-router-dom'
+import pokemonSprites from '@renderer/pages/assets/get-pokemon-sprites'
+import pokemonData from '../../../../../../pokemonData.json'
 
 interface IPokemon {
   id: string
   name: string
-  image: string
 }
 interface Props {
   search: string
@@ -57,7 +57,7 @@ export function AddPokemonCard({ search }: Props): JSX.Element {
       {pokemon && pokemon.length > 0 ? (
         pokemon.map((poke) => (
           <div className="new-count-poke-card" key={poke.id}>
-            <img src={poke.image} alt={poke.name} />
+            <img src={pokemonSprites[`${poke.id}.png`]} alt={poke.name} />
             <p>{poke.name}</p>
             <button
               onClick={() =>

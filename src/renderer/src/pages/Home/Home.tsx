@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { pokemonData } from '../assets/gen1/gen1'
 import './home.css'
+import pokemon from '../../../../../pokemonData.json'
+import pokemonSprites from '../assets/get-pokemon-sprites'
 
 interface Props {
   setId: React.Dispatch<React.SetStateAction<string | undefined>>
@@ -46,8 +47,8 @@ export function Home({ setId }: Props): JSX.Element {
       <div className="counter-container">
         {counters.map((count) => (
           <div className="counter" key={count.id} onClick={() => nav('/counter', count.id)}>
-            <img src={pokemonData[count.id_poke - 1].image} alt="" />
-            <p>{pokemonData[count.id_poke - 1].name}</p>
+            <img src={pokemonSprites[`${count.id_poke}.png`]} alt="" />
+            <p>{pokemon[count.id_poke - 1].name}</p>
             <p>attemps: {count.attempts}</p>
           </div>
         ))}

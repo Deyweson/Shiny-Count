@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
-import { pokemonData } from '../assets/gen1/gen1'
+import pokemonData from '../../../../../pokemonData.json'
 import backArrow from '../assets/back-arrow.png'
 import './Counter.css'
 import { useNavigate } from 'react-router-dom'
+import pokemonSprites from '../assets/get-pokemon-sprites'
 
 interface Props {
   id: string | undefined
@@ -71,7 +72,7 @@ export function Counter({ id }: Props): JSX.Element {
       {pokemon ? (
         <div className="counter-page">
           <img
-            src={pokemonData[pokemon.id_poke - 1].image}
+            src={pokemonSprites[`${pokemon.id_poke}.png`]}
             alt={pokemonData[pokemon.id_poke - 1].name}
           />
           <h1>{pokemonData[pokemon.id_poke - 1].name}</h1>

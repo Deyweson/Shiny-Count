@@ -25,10 +25,16 @@ interface IApi {
     attempts: number
     is_complete: boolean
   }) => Promise<void>
+
   getCounters: () => Promise<Counter[]>
+
   getPokemonCounter: (id: string) => Promise<pokemonCounter>
+
   upCounter: (count: number, id: string) => Promise<void>
+
   downCounter: (count: number, id: string) => Promise<void>
+
+  onGlobalShortcut: (callback: () => void) => () => void
 }
 
 // Implementação das funções expostas
@@ -38,7 +44,18 @@ const api: IApi = {
   getCounters: () => ipcRenderer.invoke('get-counters'),
   getPokemonCounter: (id: string) => ipcRenderer.invoke('get-pokemon-counter', id),
   upCounter: (count: number, id: string) => ipcRenderer.invoke('up-counter', count, id),
-  downCounter: (count: number, id: string) => ipcRenderer.invoke('up-counter', count, id)
+  downCounter: (count: number, id: string) => ipcRenderer.invoke('up-counter', count, id),
+  onGlobalShortcut: (callback: () => void) => {
+    const listener = (): void => callback()
+
+    // Adiciona o listener para o evento 'global-shortcut-activated'
+    ipcRenderer.on('global-shortcut-activated', listener)
+
+    // Retorna uma função que permite remover o listener
+    return () => {
+      ipcRenderer.removeListener('global-shortcut-activated', listener)
+    }
+  }
 }
 
 // Use `contextBridge` APIs to expose Electron APIs to
