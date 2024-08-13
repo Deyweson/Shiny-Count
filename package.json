@@ -24,6 +24,7 @@
     "@electron-toolkit/preload": "^3.0.1",
     "@electron-toolkit/utils": "^3.0.0",
     "electron-router-dom": "^1.0.5",
+    "nanoid": "^3.3.7",
     "react-router-dom": "^6.26.0",
     "sqlite3": "^5.1.7"
   },

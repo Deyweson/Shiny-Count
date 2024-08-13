@@ -44,14 +44,13 @@ export function AddPokemonCard({ search }: Props): JSX.Element {
     attempts: number
     is_complete: boolean
   }
+  const navigate = useNavigate()
 
   function handleAddCounter(poke: AddCounterData): void {
     console.log(poke)
     sendAddCounter(poke)
-    nav('/')
+    navigate('/')
   }
-
-  const nav = useNavigate()
 
   return (
     <div className="poke-card-container">
