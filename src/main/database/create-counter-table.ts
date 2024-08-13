@@ -8,7 +8,8 @@ export function CreateCounterTable(db: sqlite3.Database): void {
       id_poke INTEGER NOT NULL,
       time INTEGER NOT NULL,
       attempts INTEGER NOT NULL,
-      is_complete BOOLEAN NOT NULL
+      is_complete BOOLEAN NOT NULL,
+      start_date DATETIME DEFAULT CURRENT_TIMESTAMP
     );
   `,
     (err) => {

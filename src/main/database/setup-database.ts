@@ -45,13 +45,17 @@ export const setupDatabase = (): void => {
   })
   ipcMain.handle('get-counters', async () => {
     return new Promise((resolve, reject) => {
-      db.all('SELECT * FROM counters', [], (err, rows) => {
-        if (err) {
-          reject(err)
-        } else {
-          resolve(rows)
+      db.all(
+        'SELECT * FROM counters where is_complete = false order by start_date DESC',
+        [],
+        (err, rows) => {
+          if (err) {
+            reject(err)
+          } else {
+            resolve(rows)
+          }
         }
-      })
+      )
     })
   })
 }
