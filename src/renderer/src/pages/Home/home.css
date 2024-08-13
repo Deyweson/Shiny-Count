@@ -1,4 +1,4 @@
-.home-page{
+.home-page {
   margin: 10px;
   padding: 10px;
   display: flex;
@@ -6,7 +6,6 @@
   align-items: center;
   justify-content: center;
 }
-
 
 .counter {
   display: flex;
@@ -31,7 +30,6 @@
   flex-direction: row;
   justify-content: center;
   align-content: flex-start;
-
 
   margin-top: 50px;
   padding-bottom: 50px;
