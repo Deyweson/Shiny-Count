@@ -8,6 +8,7 @@ interface Api {
   }) => Promise<{ data: string }>
   getCounters: () => Promise<Counter[]>
   getPokemonCounter: (id: string) => Promise<pokemonCounter>
+  upCounter: (count: number, id: string) => Promise<void>
 }
 
 interface Window {

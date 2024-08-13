@@ -69,4 +69,15 @@ export const setupDatabase = (): void => {
       })
     })
   })
+  ipcMain.handle('up-counter', async (__event, count: number, id: string) => {
+    new Promise((resolve, reject) => {
+      db.run('update counters set attempts = ? where id = ?', [count, id], (err, rows) => {
+        if (err) {
+          reject(err)
+        } else {
+          resolve(rows)
+        }
+      })
+    })
+  })
 }

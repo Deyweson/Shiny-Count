@@ -10,6 +10,7 @@ interface Props {
 
 export function Counter({ id }: Props): JSX.Element {
   const [pokemon, setPokemon] = useState<pokemonCounter>()
+  const [refresh, setRefresh] = useState<number>(0)
 
   const navigate = useNavigate()
 
@@ -20,6 +21,15 @@ export function Counter({ id }: Props): JSX.Element {
     attempts: number
     is_complete: boolean
     start_date: string
+  }
+
+  async function upCounter(count: number, id: string): Promise<void> {
+    try {
+      await window.api.upCounter(count, id)
+      setRefresh(refresh + 1)
+    } catch (error) {
+      console.error('Failed to up counter:', error)
+    }
   }
 
   async function getPokemonCounter(id: string): Promise<pokemonCounter | void> {
@@ -37,7 +47,7 @@ export function Counter({ id }: Props): JSX.Element {
     } else {
       getPokemonCounter(id)
     }
-  }, [])
+  }, [refresh])
 
   return (
     <div className="counter-page-container">
@@ -58,7 +68,7 @@ export function Counter({ id }: Props): JSX.Element {
 
           <div className="buttons">
             <button id="button-red">-</button>
-            <button>+</button>
+            <button onClick={() => upCounter(pokemon.attempts + 1, pokemon.id)}>+</button>
           </div>
         </div>
       ) : (

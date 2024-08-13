@@ -27,6 +27,7 @@ interface IApi {
   }) => Promise<void>
   getCounters: () => Promise<Counter[]>
   getPokemonCounter: (id: string) => Promise<pokemonCounter>
+  upCounter: (count: number, id: string) => Promise<void>
 }
 
 // Implementação das funções expostas
@@ -34,7 +35,8 @@ const api: IApi = {
   addCounter: (data: { id_poke: number; time: number; attempts: number; is_complete: boolean }) =>
     ipcRenderer.invoke('add-counter', data),
   getCounters: () => ipcRenderer.invoke('get-counters'),
-  getPokemonCounter: (id: string) => ipcRenderer.invoke('get-pokemon-counter', id)
+  getPokemonCounter: (id: string) => ipcRenderer.invoke('get-pokemon-counter', id),
+  upCounter: (count: number, id: string) => ipcRenderer.invoke('up-counter', count, id)
 }
 
 // Use `contextBridge` APIs to expose Electron APIs to
