@@ -57,3 +57,14 @@
 #button-red {
   background-color: rgba(255, 0, 0, 0.479);
 }
+
+
+.couter-page-thrash{
+  position: absolute;
+  width: 50px;
+  padding: 10px;
+  margin: 10px 10px; 
+  top: 0;
+  right: 0;
+  cursor: pointer;
+}

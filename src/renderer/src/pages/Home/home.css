@@ -1,8 +1,6 @@
 .home-page {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   width: 100vw;
   height: 100vh;
   background-color: rgb(177, 177, 177);
@@ -28,7 +26,6 @@
 
 .counter-container {
   display: flex;
-
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: center;
@@ -38,13 +35,26 @@
 }
 
 .home-page-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 30px;
+  margin: 50px;
   width: 100%;
-  padding: 0px 25px;
   color: white;
+}
+.home-page-header h1 {
+  position: absolute;
+  padding: 10px;
+  margin: 10px 10px; 
+  top: 0;
+  left: 0;
+  cursor: pointer;
+}
+.home-page-header button {
+  position: absolute;
+  width: 20px;
+  padding: 10px;
+  margin: 20px 20px; 
+  top: 0;
+  right: 0;
+  cursor: pointer;
 }
 
 .add-new-counter{
@@ -59,4 +69,8 @@
 .add-new-counter:hover {
   transition-duration: 0.3s;
   scale: 1.2;
+}
+
+.counter-container .add-new-counter {
+  margin-top: 50px;
 }

@@ -4,6 +4,7 @@ import backArrow from '../assets/back-arrow.png'
 import './Counter.css'
 import { useNavigate } from 'react-router-dom'
 import pokemonSprites from '../assets/get-pokemon-sprites'
+import thrash from '../assets/thrash.png'
 
 interface Props {
   id: string | undefined
@@ -30,6 +31,15 @@ export function Counter({ id }: Props): JSX.Element {
       setRefresh(refresh + 1)
     } catch (error) {
       console.error('Failed to up counter:', error)
+    }
+  }
+
+  async function deleteCounter(id: string): Promise<void> {
+    try {
+      await window.api.deleteCounter(id)
+      navigate('/')
+    } catch (error) {
+      console.error('Failed to delete counter', error)
     }
   }
 
@@ -68,6 +78,12 @@ export function Counter({ id }: Props): JSX.Element {
         src={backArrow}
         alt="left arrow"
         onClick={() => navigate('/')}
+      />
+      <img
+        src={thrash}
+        alt="thrash"
+        className="couter-page-thrash"
+        onClick={() => deleteCounter(pokemon?.id || '')}
       />
       {pokemon ? (
         <div className="counter-page">

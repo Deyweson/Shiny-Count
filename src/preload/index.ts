@@ -33,6 +33,7 @@ interface IApi {
   upCounter: (count: number, id: string) => Promise<void>
 
   downCounter: (count: number, id: string) => Promise<void>
+  deleteCounter: (id: string) => Promise<void>
 
   onGlobalShortcut: (callback: () => void) => () => void
 }
@@ -45,6 +46,7 @@ const api: IApi = {
   getPokemonCounter: (id: string) => ipcRenderer.invoke('get-pokemon-counter', id),
   upCounter: (count: number, id: string) => ipcRenderer.invoke('up-counter', count, id),
   downCounter: (count: number, id: string) => ipcRenderer.invoke('up-counter', count, id),
+  deleteCounter: (id: string) => ipcRenderer.invoke('delete-counter', id),
   onGlobalShortcut: (callback: () => void) => {
     const listener = (): void => callback()
 

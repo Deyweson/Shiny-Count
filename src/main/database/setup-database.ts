@@ -91,4 +91,15 @@ export const setupDatabase = (): void => {
       })
     })
   })
+  new Promise((resolve, reject) => {
+    ipcMain.handle('delete-counter', async (__event, id: string) => {
+      db.run(`DELETE FROM counters where id = ?`, [id], (err, rows) => {
+        if (err) {
+          reject(err)
+        } else {
+          resolve(rows)
+        }
+      })
+    })
+  })
 }
