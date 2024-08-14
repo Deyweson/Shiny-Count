@@ -30,7 +30,8 @@ export function Home({ setId }: Props): JSX.Element {
 
   useEffect(() => {
     getCounters()
-    console.log(counters)
+    console.log(pokemon)
+    console.log(counters + '123')
   }, [])
 
   const navigate = useNavigate()
@@ -48,7 +49,7 @@ export function Home({ setId }: Props): JSX.Element {
         {counters.map((count) => (
           <div className="counter" key={count.id} onClick={() => nav('/counter', count.id)}>
             <img src={pokemonSprites[`${count.id_poke}.png`]} alt="" />
-            <p>{pokemon[count.id_poke - 1].name}</p>
+            <p>{pokemon[0].name}</p>
             <p>attemps: {count.attempts}</p>
           </div>
         ))}

@@ -17,10 +17,15 @@ export function AddPokemonCard({ search }: Props): JSX.Element {
 
   useEffect(() => {
     if (search.trim() !== '') {
-      const poke = pokemonData.filter((poke) =>
-        poke.name.toLowerCase().includes(search.trim().toLowerCase())
-      )
-      setPokemon(poke)
+      if (search.trim().toLowerCase() === 'unova') {
+        const poke = pokemonData.filter((poke) => Number(poke.id) >= 494 && Number(poke.id) <= 649)
+        setPokemon(poke)
+      } else {
+        const poke = pokemonData.filter((poke) =>
+          poke.name.toLowerCase().includes(search.trim().toLowerCase())
+        )
+        setPokemon(poke)
+      }
     } else {
       setPokemon(pokemonData)
     }
