@@ -17,9 +17,9 @@ export function AddPokemonPage(): JSX.Element {
   }
 
   return (
-    <div>
+    <div className="pokemon-add-page">
       <header className="pokemon-page-header">
-        <img src={backArrow} onClick={() => nav()} />
+        <img src={backArrow} onClick={() => nav()} className="pokemon-add-page-backarrow" />
         <h1>Pokémon</h1>
       </header>
 

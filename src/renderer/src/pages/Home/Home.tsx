@@ -36,23 +36,35 @@ export function Home({ setId }: Props): JSX.Element {
 
   const navigate = useNavigate()
 
-  function nav(path: string, id: string): void {
+  function nav(path: string, id?: string): void {
     setId(id)
     navigate(path)
   }
 
   return (
     <div className="home-page">
-      <h1>Shiny Count</h1>
-      <button onClick={() => nav('/pokemon', '123')}>New Counter</button>
+      <div className="home-page-header">
+        <h1>Shiny Count</h1>
+        {counters.length > 0 ? (
+          <button className="add-new-counter" onClick={() => nav('/pokemon')}>
+            +
+          </button>
+        ) : null}
+      </div>
       <div className="counter-container">
-        {counters.map((count) => (
-          <div className="counter" key={count.id} onClick={() => nav('/counter', count.id)}>
-            <img src={pokemonSprites[`${count.id_poke}.png`]} alt="" />
-            <p>{pokemon[0].name}</p>
-            <p>attemps: {count.attempts}</p>
-          </div>
-        ))}
+        {counters.length > 0 ? (
+          counters.map((count) => (
+            <div className="counter" key={count.id} onClick={() => nav('/counter', count.id)}>
+              <img src={pokemonSprites[`${count.id_poke}.png`]} alt="" />
+              <p>{pokemon[0].name}</p>
+              <p>attemps: {count.attempts}</p>
+            </div>
+          ))
+        ) : (
+          <button className="add-new-counter" onClick={() => nav('/pokemon')}>
+            Add New Counter
+          </button>
+        )}
       </div>
     </div>
   )

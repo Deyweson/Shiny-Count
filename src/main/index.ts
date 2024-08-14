@@ -19,6 +19,7 @@ function createWindow(): void {
     width: 350,
     height: 350,
     movable: false,
+    transparent: true,
     frame: false,
     show: false,
     autoHideMenuBar: true,
