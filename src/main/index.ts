@@ -23,6 +23,7 @@ function createWindow(): void {
     frame: false,
     show: false,
     autoHideMenuBar: true,
+    icon: path.join(__dirname, '..', '..', 'build', 'icon.png'),
     ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {
       nodeIntegration: true,

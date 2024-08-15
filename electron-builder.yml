@@ -13,12 +13,17 @@ asarUnpack:
   - resources/**
 win:
   executableName: shiny-count
+  icon: "build/icon.png"
+  differentialPackage: true 
 nsis:
   artifactName: ${name}-${version}-setup.${ext}
   shortcutName: ${productName}
   uninstallDisplayName: ${productName}
   createDesktopShortcut: always
+  oneClick: false
   allowToChangeInstallationDirectory: true
+  installerIcon: "build/icon.ico" 
+  uninstallerIcon: "build/icon.ico"
 mac:
   entitlementsInherit: build/entitlements.mac.plist
   extendInfo:
@@ -28,8 +33,10 @@ mac:
     - NSDownloadsFolderUsageDescription: Application requests access to the user's Downloads folder.
   notarize: false
 dmg:
+  icon: "build/icon.icns"
   artifactName: ${name}-${version}.${ext}
 linux:
+  icon: "build/icon.png"
   target:
     - AppImage
     - snap
