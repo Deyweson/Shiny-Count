@@ -56,7 +56,7 @@ export function Home({ setId }: Props): JSX.Element {
           counters.map((count) => (
             <div className="counter" key={count.id} onClick={() => nav('/counter', count.id)}>
               <img src={pokemonSprites[`${count.id_poke}.png`]} alt="" />
-              <p>{pokemon[0].name}</p>
+              <p>{pokemon[`${count.id_poke - 1}`].name}</p>
               <p>attemps: {count.attempts}</p>
             </div>
           ))
